@@ -1,0 +1,88 @@
+.header {
+  background: white;
+  padding: 0;
+  border-bottom: 1px solid #e72929;
+}
+
+.header a {
+  color: #af1313;
+}
+
+.header a:hover {
+  background: #e72929;
+  color: white;
+  cursor: pointer;
+}
+
+.container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between; /* Align items to the left and right */
+  align-items: center;
+  max-width: 1200px;
+  padding: 0 1rem;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-weight: bold;
+  padding: 1rem;
+}
+
+.menu_container {
+  position: relative;
+}
+
+.menu {
+  position: absolute;
+  z-index: 1;
+  background-color: whitesmoke;
+  display: none;
+}
+
+.menu a {
+  width: 100%;
+  min-width: 8rem;
+}
+
+.menu_container:hover .menu {
+  display: block;
+}
+
+.cart_count {
+  background-color: #ff4040;
+  color: white;
+  padding: 0.1rem 0.45rem;
+  border-radius: 100rem;
+  font-size: 0.9rem;
+}
+
+/* Navbar container */
+.navbar {
+  display: flex;
+  justify-content: flex-end; /* Align cart and other items to the right */
+  gap: 1rem; /* Add space between navbar items */
+  align-items: center; /* Vertically align items */
+}
+
+.navbar li {
+  list-style: none;
+}
+
+/* Position the cart count next to the Cart link */
+.navbar .cart_count {
+  margin-left: 0.5rem; /* Add space between the text and cart count */
+}
+
+/* Mobile Styling */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Stack the content vertically */
+    align-items: center;
+  }
+
+  .header ul {
+    flex-direction: column; /* Stack items vertically in the navbar */
+    align-items: center;
+  }
+}

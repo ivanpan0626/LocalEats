@@ -16,7 +16,7 @@ export default function MenuType({ menutypes, onMenuSelect }) {
           onClick={() => handleMenuSelect(menu)}
           className={`${
             selectedMenu === menu.type
-              ? "font-semibold text-sm"
+              ? "font-semibold text-sm bg-gray-200 rounded"
               : "font-normal text-sm"
           }`}
         >

@@ -1,10 +1,18 @@
-export const menu1 = [
+export const menu = [
   {
     id: "Wonton Soup",
     name: "Wonton Soup",
+    description: "",
+    spicy: false,
     price: 3.25,
+    required: [
+      { id: "Pt.", label: "Pt.", price: 0 },
+      { id: "Qt.", label: "Qt.", price: 2 },
+    ],
+    customizations: [
+      { id: "Extra Wontons", label: "Extra Wontons", price: 1.5 }, // New option under customizations
+    ],
     priceOptions: [3.25, 5.25],
-    size: ["Pt.", "Qt."],
     tags: ["Soup"],
     imageUrl: "/foods/wonton-soup.jpg",
     instructions: "",
@@ -12,9 +20,17 @@ export const menu1 = [
   {
     id: "Egg Drop Soup",
     name: "Egg Drop Soup",
+    description: "",
+    spicy: false,
     price: 3.1,
+    required: [
+      { id: "Pt.", label: "Pt.", price: 0 },
+      { id: "Qt.", label: "Qt.", price: 1.85 },
+    ],
+    customizations: [
+      { id: "Extra Egg", label: "Extra Egg", price: 0.75 }, // New option under customizations
+    ],
     priceOptions: [3.1, 4.95],
-    size: ["Pt.", "Qt."],
     tags: ["Soup"],
     imageUrl: "/foods/egg-drop-soup.jpg",
     instructions: "",
@@ -22,9 +38,17 @@ export const menu1 = [
   {
     id: "Hot & Sour Soup",
     name: "Hot & Sour Soup",
+    description: "",
+    spicy: true,
     price: 3.55,
+    required: [
+      { id: "Pt.", label: "Pt.", price: 0 },
+      { id: "Qt.", label: "Qt.", price: 2.4 },
+    ],
+    customizations: [
+      { id: "Extra Tofu", label: "Extra Tofu", price: 1.25 }, // New option under customizations
+    ],
     priceOptions: [3.55, 5.95],
-    size: ["Pt.", "Qt."],
     tags: ["Soup"],
     imageUrl: "/foods/hot-and-sour-soup.jpg",
     instructions: "",
@@ -32,9 +56,17 @@ export const menu1 = [
   {
     id: "Chicken Rice Soup",
     name: "Chicken Rice Soup",
+    description: "",
+    spicy: false,
     price: 3.1,
+    required: [
+      { id: "Pt.", label: "Pt.", price: 0 },
+      { id: "Qt.", label: "Qt.", price: 1.85 },
+    ],
+    customizations: [
+      { id: "Extra Chicken", label: "Extra Chicken", price: 1.5 }, // New option under customizations
+    ],
     priceOptions: [3.1, 4.95],
-    size: ["Pt.", "Qt."],
     tags: ["Soup"],
     imageUrl: "/foods/chicken-rice-soup.jpg",
     instructions: "",
@@ -42,7 +74,11 @@ export const menu1 = [
   {
     id: "Vegetable Bean Curd Soup",
     name: "Vegetable Bean Curd Soup",
+    description: "",
+    spicy: false,
     price: 6.5,
+    required: [],
+    customizations: [],
     priceOptions: [6.5],
     tags: ["Soup"],
     imageUrl: "/foods/vegetable-bean-curd-soup.jpg",
@@ -51,7 +87,11 @@ export const menu1 = [
   {
     id: "House Special Wonton Soup",
     name: "House Special Wonton Soup",
+    description: "",
+    spicy: false,
     price: 6.9,
+    required: [],
+    customizations: [],
     priceOptions: [6.9],
     tags: ["Soup"],
     imageUrl: "/foods/house-special-wonton-soup.jpg",
@@ -60,9 +100,17 @@ export const menu1 = [
   {
     id: "Wonton Egg Drop Soup",
     name: "Wonton Egg Drop Soup",
+    description: "",
+    spicy: false,
     price: 3.6,
+    required: [
+      { id: "Pt.", label: "Pt.", price: 0 },
+      { id: "Qt.", label: "Qt.", price: 2.15 },
+    ],
+    customizations: [
+      { id: "Extra Wonton", label: "Extra Wonton", price: 1.5 }, // New option under customizations
+    ],
     priceOptions: [3.6, 5.75],
-    size: ["Pt.", "Qt."],
     tags: ["Soup"],
     imageUrl: "/foods/wonton-eggdrop-soup.jpg",
     instructions: "",
@@ -70,9 +118,12 @@ export const menu1 = [
   {
     id: "Yat Gaw Mein",
     name: "Yat Gaw Mein",
+    description: "",
+    spicy: false,
     price: 6,
+    required: [],
+    customizations: [],
     priceOptions: [6, 6],
-    addons: ["Chicken", "Roast Pork"],
     tags: ["Soup"],
     imageUrl: "/foods/yat-gaw-mein.jpg",
     instructions: "",
@@ -80,7 +131,11 @@ export const menu1 = [
   {
     id: "Seafood Soup",
     name: "Seafood Soup",
+    description: "",
+    spicy: false,
     price: 8.4,
+    required: [],
+    customizations: [],
     priceOptions: [8.4],
     tags: ["Soup"],
     imageUrl: "/foods/seafood-soup.jpg",
@@ -89,7 +144,11 @@ export const menu1 = [
   {
     id: "Eggroll",
     name: "Eggroll",
+    description: "",
+    spicy: false,
     price: 1.8,
+    required: [],
+    customizations: [],
     priceOptions: [1.8],
     tags: ["Appetizer"],
     imageUrl: "/foods/eggroll.jpg",
@@ -98,7 +157,11 @@ export const menu1 = [
   {
     id: "Shrimp Roll",
     name: "Shrimp Roll",
+    description: "",
+    spicy: false,
     price: 1.9,
+    required: [],
+    customizations: [],
     priceOptions: [1.9],
     tags: ["Appetizer"],
     imageUrl: "/foods/shrimproll.jpg",
@@ -107,7 +170,11 @@ export const menu1 = [
   {
     id: "Shanghai Spring Roll(2)",
     name: "Shanghai Spring Roll(2)",
+    description: "",
+    spicy: false,
     price: 2.95,
+    required: [],
+    customizations: [],
     priceOptions: [2.95],
     tags: ["Appetizer"],
     imageUrl: "/foods/springroll.jpg",
@@ -116,9 +183,16 @@ export const menu1 = [
   {
     id: "Steamed Dumplings",
     name: "Steamed Dumplings",
+    description: "",
+    spicy: false,
     price: 8.45,
+    required: [
+      { id: "Pork", label: "Pork", price: 0 },
+      { id: "Chicken", label: "Chicken", price: 0 },
+      { id: "Vegetable", label: "Vegetable", price: 0 },
+    ],
+    customizations: [],
     priceOptions: [8.45, 8.45, 8.45],
-    addons: ["Pork, Chicken, Vegetable"],
     tags: ["Appetizer"],
     imageUrl: "/foods/steam-dumpling.jpg",
     instructions: "",
@@ -126,9 +200,16 @@ export const menu1 = [
   {
     id: "Fried Dumplings",
     name: "Fried Dumplings",
+    description: "",
+    spicy: false,
     price: 8.45,
+    required: [
+      { id: "Pork", label: "Pork", price: 0 },
+      { id: "Chicken", label: "Chicken", price: 0 },
+      { id: "Vegetable", label: "Vegetable", price: 0 },
+    ],
+    customizations: [],
     priceOptions: [8.45, 8.45, 8.45],
-    addons: ["Pork, Chicken, Vegetable"],
     tags: ["Appetizer"],
     imageUrl: "/foods/fried-dumpling.jpg",
     instructions: "",
@@ -136,9 +217,12 @@ export const menu1 = [
   {
     id: "BBQ Spare Ribs",
     name: "BBQ Spare Ribs",
+    description: "",
+    spicy: false,
     price: 8.95,
+    required: [],
+    customizations: [],
     priceOptions: [8.95, 14.25],
-    size: ["Sm.", "Lg."],
     tags: ["Appetizer"],
     imageUrl: "/foods/bbq-spare-ribs.jpg",
     instructions: "",
@@ -146,7 +230,11 @@ export const menu1 = [
   {
     id: "BBQ Beef(4)",
     name: "BBQ Beef(4)",
+    description: "",
+    spicy: false,
     price: 8.95,
+    required: [],
+    customizations: [],
     priceOptions: [8.95],
     tags: ["Appetizer"],
     imageUrl: "/foods/bbq-beef.jpg",
@@ -155,7 +243,11 @@ export const menu1 = [
   {
     id: "Fantail Shrimp(2)",
     name: "Fantail Shrimp(2)",
+    description: "",
+    spicy: false,
     price: 4.15,
+    required: [],
+    customizations: [],
     priceOptions: [4.15],
     tags: ["Appetizer"],
     imageUrl: "/foods/fantail-shrimp.jpg",
@@ -164,7 +256,11 @@ export const menu1 = [
   {
     id: "Cold Noodles W Seasame Sauce",
     name: "Cold Noodles W Seasame Sauce",
+    description: "",
+    spicy: false,
     price: 6.45,
+    required: [],
+    customizations: [],
     priceOptions: [6.45],
     tags: ["Appetizer"],
     imageUrl: "/foods/cold-noodle-seasame-sauce.jpg",
@@ -173,9 +269,12 @@ export const menu1 = [
   {
     id: "BBQ Boneless Ribs",
     name: "BBQ Boneless Ribs",
+    description: "",
+    spicy: false,
     price: 8.95,
+    required: [],
+    customizations: [],
     priceOptions: [8.95, 14.25],
-    size: ["Sm.", "Lg."],
     tags: ["Appetizer"],
     imageUrl: "/foods/bbq-boneless-spare-ribs.jpg",
     instructions: "",
@@ -183,7 +282,11 @@ export const menu1 = [
   {
     id: "Cheese Wontons(10)",
     name: "Cheese Wontons(10)",
+    description: "",
+    spicy: false,
     price: 6.95,
+    required: [],
+    customizations: [],
     priceOptions: [6.95],
     tags: ["Appetizer"],
     imageUrl: "/foods/cheese-wonton.jpg",
@@ -192,9 +295,15 @@ export const menu1 = [
   {
     id: "Fried Wontons(12)",
     name: "Fried Wontons(12)",
+    description: "",
+    spicy: false,
     price: 6.15,
+    required: [
+      { id: "w/ Szechuan Sauce", label: "w/ Szechuan Sauce (12)", price: 1 },
+      { id: "w/ Garlic Sauce", label: "w/ Garlic Sauce (12)", price: 1 },
+    ],
+    customizations: [],
     priceOptions: [6.15, 8.95, 8.95],
-    addons: ["w/ Szechuan Sauce(12)", "w/ Garlic Sauce (12)"],
     tags: ["Appetizer"],
     imageUrl: "/foods/fried-wonton.jpg",
     instructions: "",
@@ -202,7 +311,11 @@ export const menu1 = [
   {
     id: "Shrimp Toast(4)",
     name: "Shrimp Toast(4)",
+    description: "",
+    spicy: false,
     price: 5.65,
+    required: [],
+    customizations: [],
     priceOptions: [5.65],
     tags: ["Appetizer"],
     imageUrl: "/foods/shrimp-toast.jpg",
@@ -211,7 +324,11 @@ export const menu1 = [
   {
     id: "Roast Pork",
     name: "Roast Pork",
+    description: "",
+    spicy: false,
     price: 7.45,
+    required: [],
+    customizations: [],
     priceOptions: [7.45],
     tags: ["Appetizer"],
     imageUrl: "/foods/roast-pork.jpg",
@@ -219,7 +336,9 @@ export const menu1 = [
   },
 ];
 
-export const menu = [
+
+
+export const menu1 = [
   {
     id: "Wonton Soup",
     name: "Wonton Soup",

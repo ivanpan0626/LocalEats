@@ -14,6 +14,7 @@ import MenuType from "../components/ui/menutype.jsx";
 import Tags from "../components/ui/tags.jsx";
 import Input from "../components/ui/Input.jsx";
 import { Search } from "lucide-react";
+import MenuPage from "./MenuPage.jsx"
 
 const tags = [
   { name: "All", count: 25 },
@@ -33,12 +34,20 @@ const menuTypes = [
 export default function DemoPage() {
   const [selectedMenu, setSelectedMenu] = useState("");
   const [getAvailableTime, setAvailableTime] = useState("");
+  const [tag, setTag] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const onTagClick = (selectedTag) => { 
+    setTag(selectedTag);
+  }
+  const handleSearch = (query) => {
+    setSearchTerm(query)
+  }
   const handleMenuSelect = (menuType, time) => {
     setSelectedMenu(menuType);
     setAvailableTime(time);
   };
   return (
-    <div className="min-h-[3000px] bg-gray-50">
+    <div className="min-h-screen bg-gray-50">
       {/* Banner Image */}
       <div className="relative w-full h-[300px]">
         <img
@@ -48,7 +57,7 @@ export default function DemoPage() {
         />
       </div>
       {/* Restaurant Information */}
-      <div className="bg-white border-b">
+      <div className="bg-gray border-b">
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
             <div className="p-4 max-w-full">
@@ -119,14 +128,6 @@ export default function DemoPage() {
             <div className="flex items-center gap-4 flex-1">
               {/* Menu Details*/}
               <div className="flex flex-col gap-2">
-                {/* Menu selection buttons */}
-                <div className="flex gap-4">
-                  <MenuType
-                    menutypes={menuTypes}
-                    onMenuSelect={handleMenuSelect}
-                  />
-                </div>
-
                 {/* Menu title and available time */}
                 <div>
                   <h1 className="text-base font-semibold whitespace-nowrap">
@@ -137,19 +138,25 @@ export default function DemoPage() {
               </div>
             </div>
             {/* Add additional elements like cart or menu toggles here */}
-            <div className="max-h-[32px] relative flex-1 max-w-md">
+            {/* Menu selection buttons */}
+            <div className="flex gap-4">
+              <MenuType menutypes={menuTypes} onMenuSelect={handleMenuSelect} />
+            </div>
+            <div className="max-h-[32px] relative flex-1 max-w-lg">
               <Input
                 placeholder="Search Menu..."
                 type="text"
                 className="pl-10 w-full mb-12"
-                onChange={(e) => onSearch(e.target.value)}
+                onChange={(e) => handleSearch(e.target.value)}
               />
               <Search className="absolute left-3 top-2.5 h-5 w-6 text-gray-400" />
             </div>
           </div>
         </div>
-        <Tags tags={tags} />
+        <Tags tags={tags} onTagClick={onTagClick}/>
       </div>
+      {/* Menu Items */}
+      <MenuPage searchTerm={searchTerm} tag={tag}/>
     </div>
   );
 }

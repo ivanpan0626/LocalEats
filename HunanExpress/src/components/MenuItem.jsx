@@ -23,21 +23,26 @@ export default function MenuItem({ food }) {
   const [quantity, setQuantity] = useState(1);
 
   const handleCardClick = (food) => {
-    setSelectedFood(food);
+    if (food) {
+      setSelectedFood(food);
+    }
   };
-
   const closeDialog = () => {
     setSelectedFood(null);
+    setSelectedModifier("");
+    setSelectedCustomizations("");
+    setInstructions("");
+    setQuantity(1);
   };
 
   const totalPrice =
     (food.price +
-      food.customizations
-        .filter((c) => selectedCustomizations.includes(c.id))
-        .reduce((sum, c) => sum + c.price, 0) +
-      food.required
-        .filter((m) => selectedModifier === m.id) // selectedModifier is a single value
-        .reduce((sum, m) => sum + m.price, 0)) *
+      (food.customizations
+        ?.filter((c) => selectedCustomizations.includes(c.id))
+        ?.reduce((sum, c) => sum + c.price, 0) || 0) +
+      (food.required
+        ?.filter((m) => selectedModifier === m.id)
+        ?.reduce((sum, m) => sum + m.price, 0) || 0)) *
     quantity;
 
   const handleCustomizationChange = (customizationId) => {
@@ -62,6 +67,53 @@ export default function MenuItem({ food }) {
     console.log("Price", totalPrice);
     console.log("Food", selectedFood);
   };
+
+  const RenderModifiers = () => (
+    <div className="space-y-3">
+      {food.required.length === 0 ? (
+        <></>
+      ) : (
+        <h1 className="font-semibold italic">Modifiers</h1>
+      )}
+      <RadioRoot value={selectedModifier} onValueChange={handleValueChange}>
+        {food.required.map((modifier) => (
+          <div key={modifier.id} className="flex items-center space-x-2">
+            <RadioItem value={modifier.id} id={modifier.id} />
+            <Label htmlFor={modifier.id}>
+              {modifier.label}
+              {modifier.price > 0 && ` (+$${modifier.price.toFixed(2)})`}
+            </Label>
+          </div>
+        ))}
+      </RadioRoot>
+    </div>
+  );
+
+  const RenderCustomizations = () => (
+    <div className="space-y-3">
+      {food.customizations.length === 0 ? (
+        <></>
+      ) : (
+        <h1 className="font-semibold italic">Customize</h1>
+      )}
+      {food.customizations.map((customization) => (
+        <div key={customization.id} className="flex items-center space-x-2">
+          <Checkbox
+            id={customization.id}
+            checked={selectedCustomizations.includes(customization.id)}
+            onCheckedChange={(checked) =>
+              handleCustomizationChange(customization.id)
+            }
+          />
+          <Label htmlFor={customization.id}>
+            {customization.label}
+            {customization.price > 0 &&
+              ` (+$${customization.price.toFixed(2)})`}
+          </Label>
+        </div>
+      ))}
+    </div>
+  );
 
   return (
     <>
@@ -134,55 +186,9 @@ export default function MenuItem({ food }) {
                     </Button>
                   </div>
                   {/*Handles Food Size/Addons*/}
-                  <div className="space-y-3">
-                    <h1 className="font-semibold italic">Modifiers</h1>
-                    <RadioRoot
-                      value={selectedModifier}
-                      onValueChange={handleValueChange}
-                    >
-                      {food.required.map((modifier) => (
-                        <div
-                          key={modifier.id}
-                          className="flex items-center space-x-2"
-                        >
-                          <RadioItem
-                            value={modifier.id}
-                            id={modifier.id}
-                          ></RadioItem>
-                          <Label htmlFor={modifier.id}>
-                            {modifier.label}
-                            {modifier.price > 0 &&
-                              ` (+$${modifier.price.toFixed(2)})`}
-                          </Label>
-                        </div>
-                      ))}
-                    </RadioRoot>
-                  </div>
+                  <RenderModifiers />
                   {/*Handles Food Customizations*/}
-                  <div className="space-y-3">
-                    <h1 className="font-semibold italic">Customize</h1>
-                    {food.customizations.map((customization) => (
-                      <div
-                        key={customization.id}
-                        className="flex items-center space-x-2"
-                      >
-                        <Checkbox
-                          id={customization.id}
-                          checked={selectedCustomizations.includes(
-                            customization.id
-                          )}
-                          onCheckedChange={() =>
-                            handleCustomizationChange(customization.id)
-                          }
-                        />
-                        <Label htmlFor={customization.id}>
-                          {customization.label}
-                          {customization.price > 0 &&
-                            ` (+$${customization.price.toFixed(2)})`}
-                        </Label>
-                      </div>
-                    ))}
-                  </div>
+                  <RenderCustomizations />
                   {/*Handles Specific Instructions*/}
                   <div className="space-y-2">
                     <Label htmlFor="instructions">Special Instructions</Label>

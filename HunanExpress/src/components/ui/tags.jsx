@@ -13,16 +13,16 @@ export default function Tags({ tags, onTagClick }) {
       {tags.map((tag) => (
         <div
           key={tag.name}
-          className={`relative mx-2 px-3 py-1 bg-gray-100 font-semibold cursor-pointer transition duration-150 
+          className={`relative mx-2 px-3 py-1 font-semibold cursor-pointer transition duration-150 
           ${
             selectedTag === tag.name
               ? 'text-red-700 after:content-[""] after:block after:absolute after:h-[3px] after:w-[calc(100%-12px)] after:rounded-t-lg after:bg-red-500 after:left-1.5 after:bottom-0'
-              : "text-gray-700 hover:bg-gray-300"
+              : "text-gray-700 hover:bg-gray-300 rounded"
           }`}
           onClick={() => handleTagClick(tag.name)}
         >
           {tag.name}
-          {` (${tag.count})`}
+          {/*` (${tag.count})`*/}
         </div>
       ))}
     </div>

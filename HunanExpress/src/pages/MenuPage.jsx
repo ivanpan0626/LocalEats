@@ -4,7 +4,6 @@ import {
   getAllTags,
   getFilteredItems,
 } from "../services/foodService.jsx";
-import Thumbnails from "../components/Thumbnails/Thumbnails.jsx";
 import MenuItem from "../components/MenuItem.jsx";
 
 import NotFound from "../components/NotFound/NotFound.jsx";
@@ -23,14 +22,13 @@ const reducer = (state, action) => {
 
 export default function MenuPage({ searchTerm, tag }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { foods, tags } = state;
+  const { foods } = state;
 
   useEffect(() => {
     //Loads all the sample food from foodService.js
     getAllTags().then((tags) =>
       dispatch({ type: "TAGS_LOADED", payload: tags })
     );
-
     const loadFoods =
       tag || searchTerm ? getFilteredItems(searchTerm, tag) : getAll();
 

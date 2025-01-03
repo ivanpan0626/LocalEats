@@ -30,7 +30,9 @@ export default function Header({ onSearch, onTagClick }) {
         <div className="flex items-center justify-between gap-4">
           {/* Product Name and Search Bar */}
           <div className="flex items-center gap-4 flex-1">
-            <h1 className="text-2xl font-bold whitespace-nowrap">Uber Eats</h1>
+            <h1 className="text-2xl font-bold whitespace-nowrap text-red-700">
+              <Link to="/demo">Local Eats</Link>
+            </h1>
             <div className="max-h-[32px] relative flex-1 max-w-md">
               <Input
                 placeholder="Search Restaurants..."

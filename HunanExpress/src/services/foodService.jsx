@@ -1,19 +1,37 @@
 import { menu, tags } from "./menuService";
 
 export const getFilteredItems = async (searchTerm, tag) => {
-  let filteredItems = menu;
-
-  if (tag && tag !== "All") {
-    filteredItems = filteredItems.filter((item) => item.tags.includes(tag));
-  }
-
-  if (searchTerm) {
-    filteredItems = filteredItems.filter((item) =>
-      item.name.toLowerCase().includes(searchTerm.toLowerCase())
+  console.log(searchTerm, tag);
+  let filteredMenu = [];
+  if (tag === "All" && searchTerm === "") {
+    return menu;
+  } else if (tag !== "All") {
+    let categoryItems = menu;
+    categoryItems = categoryItems.filter((section) =>
+      section.category.includes(tag)
     );
+    filteredMenu = categoryItems;
+    if (searchTerm) {
+      categoryItems = categoryItems[0].items.filter((item) =>
+        item.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      if (categoryItems.length > 0) {
+        filteredMenu = [{ category: tag, items: categoryItems }];
+      }
+      return filteredMenu;
+    }
+    return filteredMenu;
+  } else {
+    menu.map((section) => {
+      let categoryItems = section.items.filter((item) =>
+        item.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      if (categoryItems.length > 0) {
+        filteredMenu.push({ category: section.category, items: categoryItems });
+      }
+    });
+    return filteredMenu;
   }
-
-  return filteredItems;
 };
 
 export const getAll = async () => {

@@ -34,7 +34,7 @@ const menuTypes = [
 export default function DemoPage() {
   const [selectedMenu, setSelectedMenu] = useState("");
   const [getAvailableTime, setAvailableTime] = useState("");
-  const [tag, setTag] = useState("");
+  const [tag, setTag] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const onTagClick = (selectedTag) => {
     setTag(selectedTag);
@@ -153,7 +153,7 @@ export default function DemoPage() {
             </div>
           </div>
         </div>
-        <Tags tags={tags} onTagClick={onTagClick} />
+        <Tags tags={tags} selectedTag={tag} onTagClick={onTagClick} />
       </div>
       {/* Menu Items */}
       <MenuGrid searchTerm={searchTerm} tag={tag} />

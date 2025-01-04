@@ -28,7 +28,7 @@ function App() {
     <>
       <Loading />
       <Header onSearch={handleSearch} onTagClick={handleTagClick} />
-      <AppRoutes searchTerm={searchTerm} tag={tag} />
+      <AppRoutes />
       <SpeedInsights />
       <Analytics />
     </>

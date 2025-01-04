@@ -1,21 +1,16 @@
 import { Route, Routes } from "react-router-dom";
-import MenuPage from "./pages/MenuPage";
 import FoodPage from "./pages/Food/FoodPage";
 import CartPage from "./pages/Cart/CartPage";
 import LoginPage from "./pages/Login/LoginPage";
 import RegisterPage from "./pages/Register/RegisterPage";
 import CheckoutPage from "./pages/Checkout/CheckoutPage";
 import CheckoutSuccessPage from "./pages/Checkout/CheckoutSuccessPage";
-import DemoPage from "./pages/DemoPage";
+import RestaurantPage from "./pages/RestaurantPage";
 
-export default function AppRoutes({ searchTerm, tag }) {
+export default function AppRoutes() {
   return (
     <Routes>
-      <Route path="/demo" element={<DemoPage></DemoPage>}></Route>
-      <Route
-        path="/"
-        element={<MenuPage searchTerm={searchTerm} tag={tag} />}
-      ></Route>
+      <Route path="/" element={<RestaurantPage></RestaurantPage>}></Route>
       <Route path="/food/:id" element={<FoodPage></FoodPage>}></Route>
       <Route path="/cart" element={<CartPage></CartPage>}></Route>
 

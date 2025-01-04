@@ -14,7 +14,7 @@ import MenuType from "../components/ui/menutype.jsx";
 import Tags from "../components/ui/tags.jsx";
 import Input from "../components/ui/Input.jsx";
 import { Search } from "lucide-react";
-import MenuPage from "./MenuPage.jsx"
+import MenuGrid from "./MenuGrid.jsx";
 
 const tags = [
   { name: "All", count: 25 },
@@ -36,12 +36,12 @@ export default function DemoPage() {
   const [getAvailableTime, setAvailableTime] = useState("");
   const [tag, setTag] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const onTagClick = (selectedTag) => { 
+  const onTagClick = (selectedTag) => {
     setTag(selectedTag);
-  }
+  };
   const handleSearch = (query) => {
-    setSearchTerm(query)
-  }
+    setSearchTerm(query);
+  };
   const handleMenuSelect = (menuType, time) => {
     setSelectedMenu(menuType);
     setAvailableTime(time);
@@ -153,10 +153,10 @@ export default function DemoPage() {
             </div>
           </div>
         </div>
-        <Tags tags={tags} onTagClick={onTagClick}/>
+        <Tags tags={tags} onTagClick={onTagClick} />
       </div>
       {/* Menu Items */}
-      <MenuPage searchTerm={searchTerm} tag={tag}/>
+      <MenuGrid searchTerm={searchTerm} tag={tag} />
     </div>
   );
 }

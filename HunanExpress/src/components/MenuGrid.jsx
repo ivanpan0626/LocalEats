@@ -4,11 +4,11 @@ import {
   getAllTags,
   getFilteredItems,
 } from "../services/foodService.jsx";
-import FeaturedItem from "../components/ui/featureditem.jsx";
-import { Separator } from "../components/ui/separator.jsx";
-import MenuItem from "../components/ui/menuitem.jsx";
+import FeaturedItem from "./ui/featureditem.jsx";
+import { Separator } from "./ui/separator.jsx";
+import MenuItem from "./ui/menuitem.jsx";
 
-import NotFound from "../components/NotFound/NotFound.jsx";
+import NotFound from "./NotFound/NotFound.jsx";
 const initialState = { menu: [], tags: [] };
 
 const reducer = (state, action) => {
@@ -39,7 +39,6 @@ export default function MenuPage({ searchTerm, tag }) {
   }, [searchTerm, tag]);
 
   return (
-    //Handles base page, with search bar and tags
     <>
       {menu.length === 0 && <NotFound linkedText="Go back"></NotFound>}
       <div className="max-w-7xl mx-auto px-4 py-8">

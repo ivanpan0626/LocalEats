@@ -14,7 +14,7 @@ import MenuType from "../components/ui/menutype.jsx";
 import Tags from "../components/ui/tags.jsx";
 import Input from "../components/ui/Input.jsx";
 import { Search } from "lucide-react";
-import MenuGrid from "./MenuGrid.jsx";
+import MenuGrid from "../components/MenuGrid.jsx";
 
 const tags = [
   { name: "All", count: 25 },
@@ -122,7 +122,7 @@ export default function DemoPage() {
       </div>
       {/* Featured Items */}
       {/* Restaurant Header */}
-      <div className="sticky top-[64px] z-50 bg-white border-b max-w-7xl mx-auto">
+      <div className="sticky top-[64px] z-20 bg-white border-b max-w-7xl mx-auto">
         <div className="px-4 py-1.5">
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-4 flex-1">

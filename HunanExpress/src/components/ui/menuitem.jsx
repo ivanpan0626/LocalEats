@@ -7,6 +7,8 @@ import { Label } from "./label.jsx";
 import { Textarea } from "./textarea.jsx";
 import { RadioRoot, RadioItem } from "./radiobutton.jsx";
 import { Checkbox } from "./checkbox.jsx";
+import { useCart } from "../../hooks/useCart.jsx";
+import React from "react";
 
 export default function MenuItem({ item }) {
   const [selectedFood, setSelectedFood] = useState(null);
@@ -14,6 +16,7 @@ export default function MenuItem({ item }) {
   const [selectedCustomizations, setSelectedCustomizations] = useState("");
   const [instructions, setInstructions] = useState("");
   const [quantity, setQuantity] = useState(1);
+  const [error, setError] = useState(""); // Error state
 
   const handleItem = (item) => {
     if (item) {
@@ -23,9 +26,10 @@ export default function MenuItem({ item }) {
 
   const handleCustomizationChange = (customizationId) => {
     setSelectedCustomizations((prev) => {
-      const newCustomizations = prev.includes(customizationId)
+      let newCustomizations = prev.includes(customizationId)
         ? prev.filter((id) => id !== customizationId) //Remove if selected
         : [...prev, customizationId]; //Add if not selected
+      newCustomizations = newCustomizations.sort();
       return newCustomizations;
     });
   };
@@ -35,13 +39,28 @@ export default function MenuItem({ item }) {
     setSelectedModifier(value);
   };
 
+  const { addToCart, cart } = useCart();
   const returnCart = () => {
-    console.log("Customize", selectedCustomizations);
-    console.log("Modify", selectedModifier);
-    console.log("Instruction", instructions);
-    console.log("Qty", quantity);
-    console.log("Price", totalPrice);
-    console.log("Food", selectedFood);
+    if (item.required.length > 0 && selectedModifier === "") {
+      setError("Please select a modifier!"); // Set error message
+      return;
+    }
+    setError(""); // Clear error message if valid
+
+    let food = {
+      id: `${item.id}${selectedModifier}`,
+      name: selectedModifier
+        ? `${item.id} - (${selectedModifier})`
+        : `${item.id}`,
+      selectedCustomizations: selectedCustomizations
+        ? selectedCustomizations
+        : [],
+      instructions: instructions,
+      price: totalPrice / quantity,
+      imageUrl: item.imageUrl,
+    };
+    addToCart(food, quantity);
+    closeDialog();
   };
 
   const totalPrice =
@@ -60,27 +79,31 @@ export default function MenuItem({ item }) {
     setSelectedCustomizations("");
     setInstructions("");
     setQuantity(1);
+    setSelectedFood(null);
+    setError(""); // Reset error when closing the dialog
   };
 
-  const RenderPlusMinus = () => (
-    <div className="flex items-center justify-center gap-4 mb-2">
-      <Button
-        variant="outline"
-        size="icon"
-        onClick={() => setQuantity(Math.max(1, quantity - 1))}
-      >
-        <Minus className="h-4 w-4" />
-      </Button>
-      <span className="text-lg font-medium w-12 text-center">{quantity}</span>
-      <Button
-        variant="outline"
-        size="icon"
-        onClick={() => setQuantity(quantity + 1)}
-      >
-        <Plus className="h-4 w-4" />
-      </Button>
-    </div>
-  );
+  const RenderPlusMinus = () => {
+    return (
+      <div className="flex items-center justify-center gap-4 mb-2">
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={() => setQuantity(Math.max(1, quantity - 1))}
+        >
+          <Minus className="h-4 w-4" />
+        </Button>
+        <span className="text-lg font-medium w-12 text-center">{quantity}</span>
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={() => setQuantity(quantity + 1)}
+        >
+          <Plus className="h-4 w-4" />
+        </Button>
+      </div>
+    );
+  };
 
   const RenderModifiers = () => (
     <div className="space-y-3">
@@ -100,6 +123,9 @@ export default function MenuItem({ item }) {
           </div>
         ))}
       </RadioRoot>
+      {error && (
+        <p className="text-red-500 text-sm mt-2">{error}</p> // Display error message
+      )}
     </div>
   );
 
@@ -129,18 +155,6 @@ export default function MenuItem({ item }) {
     </div>
   );
 
-  const RenderInstructions = () => (
-    <div className="space-y-2">
-      <Label htmlFor="instructions">Special Instructions</Label>
-      <Textarea
-        id="instructions"
-        placeholder="Any special requests?"
-        value={instructions}
-        onChange={(e) => setInstructions(e.target.value)}
-      />
-    </div>
-  );
-
   return (
     <>
       <RegularItem item={item} handleItem={handleItem} />
@@ -155,7 +169,16 @@ export default function MenuItem({ item }) {
               <RenderPlusMinus />
               <RenderModifiers />
               <RenderCustomizations />
-              <RenderInstructions />
+              {/* Handles Special Instructions*/}
+              <div className="space-y-2">
+                <Label htmlFor="instructions">Special Instructions</Label>
+                <Textarea
+                  id="instructions"
+                  placeholder="Any special requests, allergies..."
+                  value={instructions}
+                  onChange={(e) => setInstructions(e.target.value)}
+                />
+              </div>
               {/*Handles Adding to Cart*/}
               <Button
                 className="w-full bg-red-600 hover:bg-red-700 text-white rounded-lg"

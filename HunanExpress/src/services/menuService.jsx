@@ -16,6 +16,7 @@ export const menu = [
         ],
         customizations: [
           { id: "Extra Wontons", label: "Extra Wontons", price: 1.5 },
+          { id: "Extra Soup", label: "Extra Soup", price: 2 },
         ],
         priceOptions: [3.25, 5.25],
         instructions: "",

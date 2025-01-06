@@ -36,7 +36,6 @@ export default function MenuPage({ searchTerm, tag }) {
       tag || searchTerm ? getFilteredItems(searchTerm, tag) : getAll();
 
     loadMenu.then((menu) => dispatch({ type: "MENU_LOADED", payload: menu }));
-    console.log(menu);
   }, [searchTerm, tag]);
 
   return (

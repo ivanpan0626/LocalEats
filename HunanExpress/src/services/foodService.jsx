@@ -1,7 +1,6 @@
 import { menu, tags } from "./menuService";
 
 export const getFilteredItems = async (searchTerm, tag) => {
-  console.log(searchTerm, tag);
   let filteredMenu = [];
   if (tag === "All" && searchTerm === "") {
     return menu;

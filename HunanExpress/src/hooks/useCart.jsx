@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import isEqual from "lodash/isEqual";
 
 const CartContext = createContext(null);
 const CART_KEY = "cart";
@@ -44,7 +45,10 @@ export default function CartProvider({ children }) {
       (item) =>
         !(
           item.food.id === food.id &&
-          item.food.price === food.price &&
+          isEqual(
+            item.food.selectedCustomizations,
+            food.selectedCustomizations
+          ) &&
           item.food.instructions === food.instructions
         )
     );
@@ -63,7 +67,10 @@ export default function CartProvider({ children }) {
     setCartItems(
       cartItems.map((item) =>
         item.food.id === food.id &&
-        item.food.price === food.price &&
+        isEqual(
+          item.food.selectedCustomizations,
+          food.selectedCustomizations
+        ) &&
         item.food.instructions === food.instructions
           ? changedCartItem
           : item
@@ -75,7 +82,10 @@ export default function CartProvider({ children }) {
     const cartItem = cartItems.find(
       (item) =>
         item.food.id === food.id &&
-        item.food.price === food.price &&
+        isEqual(
+          item.food.selectedCustomizations,
+          food.selectedCustomizations
+        ) &&
         item.food.instructions === food.instructions
     );
     if (cartItem) {

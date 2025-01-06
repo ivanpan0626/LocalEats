@@ -36,7 +36,6 @@ export default function FoodPage() {
       }
 
       if (foodClone.addons) {
-        console.log("hi");
         foodClone.selectedOptions = foodClone.addons[0]; // Handle selected addon
         foodClone.name = foodClone.id + ` - (${foodClone.addons[0]})`; // Ensure name is not overwritten if already set
       }

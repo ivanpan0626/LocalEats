@@ -1,13 +1,18 @@
-import { Button } from "./button.jsx";
+import { Button } from "./ui/button.jsx";
 import { Plus, Minus } from "lucide-react";
 import { useState } from "react";
-import RegularItem from "./regularitem.jsx";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./dialog.jsx";
-import { Label } from "./label.jsx";
-import { Textarea } from "./textarea.jsx";
-import { RadioRoot, RadioItem } from "./radiobutton.jsx";
-import { Checkbox } from "./checkbox.jsx";
-import { useCart } from "../../hooks/useCart.jsx";
+import RegularItem from "./ui/regularitem.jsx";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "./ui/dialog.jsx";
+import { Label } from "./ui/label.jsx";
+import { Textarea } from "./ui/textarea.jsx";
+import { RadioRoot, RadioItem } from "./ui/radiobutton.jsx";
+import { Checkbox } from "./ui/checkbox.jsx";
+import { useCart } from "../hooks/useCart.jsx";
 import React from "react";
 
 export default function MenuItem({ item }) {

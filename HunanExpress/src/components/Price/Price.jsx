@@ -7,7 +7,7 @@ export default function Price({ price, locale, currency }) {
       currency,
     }).format(price);
 
-  return <span>{formatPrice()}</span>;
+  return <span className="px-2">{formatPrice()}</span>;
 }
 
 Price.defaultProps = {

@@ -39,20 +39,19 @@ export default function CartProvider({ children }) {
   const sum = (items) => {
     return items.reduce((prevValue, currValue) => prevValue + currValue, 0);
   };
-
-  const removeFromCart = (food) => {
-    const filteredCartItems = cartItems.filter(
-      (item) =>
-        !(
-          item.food.id === food.id &&
-          isEqual(
-            item.food.selectedCustomizations,
-            food.selectedCustomizations
-          ) &&
-          item.food.instructions === food.instructions
-        )
-    );
-    setCartItems(filteredCartItems);
+  const removeFromCart = (item) => {
+    const filteredCartItems = cartItems.filter((cartItem) => {
+      // Keep the item only if it doesn't match the item to be removed
+      return !(
+        item.food.id === cartItem.food.id &&
+        isEqual(
+          item.food.selectedCustomizations,
+          cartItem.food.selectedCustomizations
+        ) &&
+        item.food.instructions === cartItem.food.instructions
+      );
+    });
+    setCartItems(filteredCartItems); // Update the state with the filtered list
   };
 
   const changeQuantity = (cartItem, newQuantity) => {

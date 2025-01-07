@@ -6,7 +6,7 @@ import {
 } from "../services/foodService.jsx";
 import FeaturedItem from "./ui/featureditem.jsx";
 import { Separator } from "./ui/separator.jsx";
-import MenuItem from "./ui/menuitem.jsx";
+import MenuItem from "./MenuItem.jsx";
 
 import NotFound from "./NotFound/NotFound.jsx";
 const initialState = { menu: [], tags: [] };

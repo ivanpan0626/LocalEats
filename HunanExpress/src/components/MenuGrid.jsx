@@ -43,22 +43,6 @@ export default function MenuPage({ searchTerm, tag }) {
       {menu.length === 0 && <NotFound linkedText="Go back"></NotFound>}
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="space-y-12">
-          {/* Featured Items */}
-          {menu.find((section) => section.category === "Featured Items") && (
-            <div>
-              <div className="flex items-center gap-2 mb-6">
-                <h2 className="text-2xl font-semibold">Featured Items</h2>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {menu
-                  .find((section) => section.category === "Featured Items")
-                  ?.items.map((item) => (
-                    <FeaturedItem key={item.id} item={item}></FeaturedItem>
-                  ))}
-              </div>
-            </div>
-          )}
-          <Separator />
           {/* Regular Menu Section */}
           {menu
             .filter((section) => section.category !== "Featured Items")

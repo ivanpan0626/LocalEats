@@ -16,7 +16,12 @@ export default function RegularItem({ item, handleItem }) {
         <div className="flex-1 p-4">
           <div className="flex justify-between items-start">
             <div>
-              <h3 className="font-semibold">{item.name}</h3>
+              <h3 className="font-semibold">
+                {item.name}
+                {item.isSpicy && (
+                  <Flame className="h-4 w-4 text-red-500 inline ml-1" fill="currentColor" />
+                )}
+              </h3>
               <p className="text-sm text-gray-600 mt-1">{item.description}</p>
             </div>
             <Button
@@ -33,9 +38,6 @@ export default function RegularItem({ item, handleItem }) {
               <Badge variant="secondary" className="bg-green-100">
                 Veg
               </Badge>
-            )}
-            {item.isSpicy && (
-              <Flame className="h-4 w-4 text-red-500" fill="currentColor" />
             )}
           </div>
         </div>

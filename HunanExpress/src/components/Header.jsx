@@ -2,10 +2,8 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Input from "./ui/Input.jsx";
 import { Search } from "lucide-react";
-import Tags from "./ui/tags.jsx";
-import Navbar from "./Navbar/Navbar.jsx";
+import Navbar from "./ui/navbar.jsx";
 import { useCart } from "../hooks/useCart";
-import { useLocation } from "react-router";
 
 Header.propTypes = {
   onSearch: PropTypes.func,

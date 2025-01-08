@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Input from "../../components/ui/Input";
-import Title from "../../components/Title/Title";
+import Title from "../../components/ui/title";
 import styles from "./registerPage.module.css";
 import Button from "../../components/Button/Button";
 import { Link } from "react-router-dom";

@@ -1,133 +1,20 @@
 import { Card } from "../components/ui/card.jsx";
 import { useState } from "react";
 import { Clock, Phone } from "lucide-react";
-import MenuType from "../components/ui/menutype.jsx";
-import Tags from "../components/ui/tags.jsx";
-import Input from "../components/ui/Input.jsx";
-import { Search } from "lucide-react";
 import MenuGrid from "../components/MenuGrid.jsx";
-import FeaturedItem from "../components/ui/featureditem.jsx";
-
-const restaurant = {
-  name: "Hunan Express",
-  description:
-    "This is a description of the store. We serve delicious food made with fresh ingredients and great care.",
-  info: {
-    hours: [
-      { day: "Mon-Thurs", time: "10:30 AM - 10:00 PM" },
-      { day: "Fri-Sun", time: "10:30 AM - 11:00 PM" },
-    ],
-    contact: "201-384-1880",
-    address: "161 N Washington Ave, Bergenfield, NJ, 07621",
-  },
-  reviews: [],
-  featuredMenu: [
-    {
-      id: "Eggroll",
-      name: "Eggroll",
-      description: "Crispy, deep-fried rolls with a vegetable filling.",
-      price: 1.8,
-      imageUrl: "/foods/eggroll.jpg",
-      category: "Appetizer",
-      isSpicy: false,
-      required: [],
-      customizations: [],
-      priceOptions: [1.8],
-      instructions: "",
-    },
-    {
-      id: "Shrimp Roll",
-      name: "Shrimp Roll",
-      description: "Crispy rolls filled with seasoned shrimp.",
-      price: 1.9,
-      imageUrl: "/foods/shrimproll.jpg",
-      category: "Appetizer",
-      isSpicy: false,
-      required: [],
-      customizations: [],
-      priceOptions: [1.9],
-      instructions: "",
-    },
-    {
-      id: "Shanghai Spring Roll(2)",
-      name: "Shanghai Spring Roll(2)",
-      description: "Crispy fried spring rolls with pork and vegetables.",
-      price: 2.95,
-      imageUrl: "/foods/springroll.jpg",
-      category: "Appetizer",
-      isSpicy: false,
-      required: [],
-      customizations: [],
-      priceOptions: [2.95],
-      instructions: "",
-    },
-    {
-      id: "Steamed Dumplings",
-      name: "Steamed Dumplings",
-      description:
-        "Dumplings filled with your choice of pork, chicken, or vegetables.",
-      price: 8.45,
-      imageUrl: "/foods/steam-dumpling.jpg",
-      category: "Appetizer",
-      isSpicy: false,
-      required: [
-        { id: "Pork", label: "Pork", price: 0 },
-        { id: "Chicken", label: "Chicken", price: 0 },
-        { id: "Vegetable", label: "Vegetable", price: 0 },
-      ],
-      customizations: [],
-      priceOptions: [8.45, 8.45, 8.45],
-      instructions: "",
-    },
-    {
-      id: "Fried Dumplings",
-      name: "Fried Dumplings",
-      description:
-        "Crispy fried dumplings with a choice of pork, chicken, or vegetable filling.",
-      price: 8.45,
-      imageUrl: "/foods/fried-dumpling.jpg",
-      category: "Appetizer",
-      isSpicy: true,
-      required: [
-        { id: "Pork", label: "Pork", price: 0 },
-        { id: "Chicken", label: "Chicken", price: 0 },
-        { id: "Vegetable", label: "Vegetable", price: 0 },
-      ],
-      customizations: [],
-      priceOptions: [8.45, 8.45, 8.45],
-      instructions: "",
-    },
-  ],
-  menu: [],
-  category: [
-    { name: "All" },
-    { name: "Soup" },
-    { name: "Appetizer" },
-    { name: "Chicken" },
-    { name: "Beef" },
-    { name: "Lo mein" },
-  ],
-  menuTypes: [
-    { type: "All Day", time: "10:30 AM - 10:00 PM" },
-    { type: "Lunch", time: "11:30 AM - 3:00 PM" },
-    { type: "Catering", time: "Appointment Only" },
-  ],
-};
+import MenuItem from "../components/MenuItem.jsx";
+import RestaurantHeader from "../components/RestaurantHeader.jsx";
+import { Separator } from "@radix-ui/react-separator";
+import { restaurant } from "../services/restaurantService.jsx";
 
 export default function RestaurantPage() {
-  const [selectedMenu, setSelectedMenu] = useState("");
-  const [getAvailableTime, setAvailableTime] = useState("");
-  const [tag, setTag] = useState("All");
+  const [tag, setTag] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const onTagClick = (selectedTag) => {
     setTag(selectedTag);
   };
   const handleSearch = (query) => {
     setSearchTerm(query);
-  };
-  const handleMenuSelect = (menuType, time) => {
-    setSelectedMenu(menuType);
-    setAvailableTime(time);
   };
   return (
     <div className="min-h-screen bg-gray-50">
@@ -140,7 +27,7 @@ export default function RestaurantPage() {
         />
       </div>
       {/* Restaurant Information */}
-      <div className="bg-gray border-b">
+      <div className="bg-gray border-b px-10">
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
             <div className="p-4 max-w-full">
@@ -212,57 +99,27 @@ export default function RestaurantPage() {
           </div>
         </div>
       </div>
+      <Separator />
       {/* Featured Items */}
-      <div className="flex items-center gap-2 mb-6">
-        <h2 className="text-2xl font-semibold">Featured Items</h2>
+      <div className="max-w-7xl mx-auto flex items-center gap-2 mb-6">
+        <h2 className="text-2xl font-semibold px-10">Customer Favorites</h2>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-        {restaurant.featuredMenu.map((item) => (
-          <FeaturedItem key={item.id} item={item} />
-        ))}
-      </div>
-
-      {/* Restaurant Header */}
-      <div className="sticky top-[64px] z-20 bg-white border-b max-w-7xl mx-auto">
-        <div className="px-4 py-1.5">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-4 flex-1">
-              {/* Menu Details*/}
-              <div className="flex flex-col gap-2">
-                {/* Menu title and available time */}
-                <div>
-                  <h1 className="text-base font-semibold whitespace-nowrap">
-                    {selectedMenu} Menu
-                  </h1>
-                  <h3 className="text-sm text-gray-500">{getAvailableTime}</h3>
-                </div>
-              </div>
-            </div>
-            {/* Add additional elements like cart or menu toggles here */}
-            {/* Menu selection buttons */}
-            <div className="flex gap-4">
-              <MenuType
-                menutypes={restaurant.menuTypes}
-                onMenuSelect={handleMenuSelect}
-              />
-            </div>
-            <div className="max-h-[32px] relative flex-1 max-w-lg">
-              <Input
-                placeholder="Search Menu..."
-                type="text"
-                className="pl-10 w-full mb-12"
-                onChange={(e) => handleSearch(e.target.value)}
-              />
-              <Search className="absolute left-3 top-2.5 h-5 w-6 text-gray-400" />
-            </div>
-          </div>
+      <div className="max-w-7xl mx-auto px-10">
+        <div className="w-full overflow-x-auto flex gap-4 custom-scroll mb-3">
+          {restaurant.featuredMenu.map((item) => (
+            <MenuItem key={item.id} item={item} featured={true} />
+          ))}
         </div>
-        <Tags
-          tags={restaurant.category}
-          selectedTag={tag}
-          onTagClick={onTagClick}
-        />
       </div>
+      {/* Restaurant Header */}
+      <RestaurantHeader
+        category={restaurant.category}
+        menuTypes={restaurant.menuTypes}
+        defaultMenu={restaurant.menuTypes[0].type}
+        defaultTime={restaurant.menuTypes[0].time}
+        onTagClick={onTagClick}
+        handleSearch={handleSearch}
+      />
       {/* Regular Menu Items */}
       <MenuGrid searchTerm={searchTerm} tag={tag} />
     </div>

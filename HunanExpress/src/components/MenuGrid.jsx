@@ -4,8 +4,6 @@ import {
   getAllTags,
   getFilteredItems,
 } from "../services/foodService.jsx";
-import FeaturedItem from "./ui/featureditem.jsx";
-import { Separator } from "./ui/separator.jsx";
 import MenuItem from "./MenuItem.jsx";
 
 import NotFound from "./NotFound/NotFound.jsx";
@@ -41,11 +39,11 @@ export default function MenuPage({ searchTerm, tag }) {
   return (
     <>
       {menu.length === 0 && <NotFound linkedText="Go back"></NotFound>}
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto px-10 py-8">
         <div className="space-y-12">
           {/* Regular Menu Section */}
           {menu
-            .filter((section) => section.category !== "Featured Items")
+            .filter((section) => section.category !== "FeaturedItems")
             .map((section) =>
               section.items.length > 0 ? (
                 <div key={section.category}>

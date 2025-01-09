@@ -22,7 +22,7 @@ export default function Cart({ cart, toggleCart, isCartOpen, isMounted }) {
   const customizeInfo = (customizations, instructions) => {
     let customizeText = customizations.join(", ");
     if (instructions !== "") {
-      return customizeText + ", " + instructions;
+      return (customizeText ? customizeText + ", " + instructions : instructions)
     }
     return customizeText;
   };

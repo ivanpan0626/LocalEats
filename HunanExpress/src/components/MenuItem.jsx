@@ -2,6 +2,7 @@ import { Button } from "./ui/button.jsx";
 import { Plus, Minus } from "lucide-react";
 import { useState } from "react";
 import RegularItem from "./ui/regularitem.jsx";
+import FeaturedItem from "./ui/featureditem.jsx";
 import {
   Dialog,
   DialogContent,
@@ -13,9 +14,8 @@ import { Textarea } from "./ui/textarea.jsx";
 import { RadioRoot, RadioItem } from "./ui/radiobutton.jsx";
 import { Checkbox } from "./ui/checkbox.jsx";
 import { useCart } from "../hooks/useCart.jsx";
-import React from "react";
 
-export default function MenuItem({ item }) {
+export default function MenuItem({ item, featured}) {
   const [selectedFood, setSelectedFood] = useState(null);
   const [selectedModifier, setSelectedModifier] = useState("");
   const [selectedCustomizations, setSelectedCustomizations] = useState("");
@@ -162,7 +162,7 @@ export default function MenuItem({ item }) {
 
   return (
     <>
-      <RegularItem item={item} handleItem={handleItem} />
+      {featured ? <FeaturedItem item={item} handleItem={handleItem}/> : <RegularItem item={item} handleItem={handleItem} />}
       {selectedFood && (
         <Dialog open={Boolean(selectedFood)} onOpenChange={closeDialog}>
           <DialogContent className="sm:max-w-[425px]">

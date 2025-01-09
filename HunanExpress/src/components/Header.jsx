@@ -7,20 +7,9 @@ import { useCart } from "../hooks/useCart";
 
 Header.propTypes = {
   onSearch: PropTypes.func,
-  onTagClick: PropTypes.func,
-  isMenu: PropTypes.bool,
 };
 
-const tags = [
-  { name: "All", count: 25 },
-  { name: "Soup", count: 9 },
-  { name: "Appetizer", count: 15 },
-  { name: "Chicken", count: 0 },
-  { name: "Beef", count: 0 },
-  { name: "Lo mein", count: 0 },
-];
-
-export default function Header({ onSearch, onTagClick }) {
+export default function Header({ onSearch }) {
   const { cart } = useCart();
   return (
     <div className="sticky top-0 z-50 bg-white border-b">

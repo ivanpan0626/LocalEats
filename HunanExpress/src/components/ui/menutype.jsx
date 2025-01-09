@@ -1,11 +1,9 @@
 import { useState } from "react";
 export default function MenuType({ menutypes, onMenuSelect }) {
-  const [selectedMenu, setSelectedMenu] = useState(""); // Default menu selection
-  const [getTime, setGetTime] = useState("");
+  const [selectedMenu, setSelectedMenu] = useState("All Day"); // Default menu selection
 
   const handleMenuSelect = (menu) => {
     setSelectedMenu(menu.type);
-    setGetTime(menu.time);
     onMenuSelect(menu.type, menu.time); // Pass values back to the parent
   };
   return (

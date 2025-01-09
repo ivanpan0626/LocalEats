@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-export default function Tags({ tags, selectedTag, onTagClick }) {
+export default function Tags({ tags, onTagClick}) {
+  const [selectedTag, setTag] = useState("All");
+
   return (
     <div className="sticky top-0 z-10 bg-white border-b border-gray-200 flex overflow-x-auto whitespace-nowrap py-2 px-4 shadow-sm">
       {tags.map((tag) => (
@@ -12,10 +14,11 @@ export default function Tags({ tags, selectedTag, onTagClick }) {
               ? 'text-red-700 after:content-[""] after:block after:absolute after:h-[3px] after:w-[calc(100%-12px)] after:rounded-t-lg after:bg-red-500 after:left-1.5 after:bottom-0'
               : "text-gray-700 hover:bg-gray-300 rounded"
           }`}
-          onClick={() => onTagClick(tag.name)}
+          onClick={() => {onTagClick(tag.name);
+            setTag(tag.name)
+          }}
         >
           {tag.name}
-          {/*` (${tag.count})`*/}
         </div>
       ))}
     </div>

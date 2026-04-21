@@ -1,5 +1,8 @@
 # 🍽️ Local Eats
 
+Deployed here for demo purposes
+https://local-eats-fawn.vercel.app/
+
 A full-stack food ordering platform built with the MERN stack, enabling users to browse menus, place orders, and complete secure payments in real time.
 
 ---

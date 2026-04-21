@@ -1,6 +1,6 @@
 import MenuType from "./ui/menutype.jsx";
 import Tags from "./ui/tags.jsx";
-import Input from "./ui/Input.jsx";
+import Input from "./ui/input.jsx";
 import { Search } from "lucide-react";
 import { useState } from "react";
 

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import Input from "./ui/Input.jsx";
+import Input from "./ui/input.jsx";
 import { Search } from "lucide-react";
 import Navbar from "./ui/navbar.jsx";
 import { useCart } from "../hooks/useCart";

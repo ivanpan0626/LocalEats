@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import Input from "../../components/ui/Input";
+import Input from "../../components/ui/input.jsx";
 import Title from "../../components/ui/title";
 import styles from "./registerPage.module.css";
 import Button from "../../components/Button/Button";

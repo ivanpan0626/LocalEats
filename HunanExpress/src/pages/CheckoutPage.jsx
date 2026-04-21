@@ -5,7 +5,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Info } from "lucide-react";
 
 import Title from "../components/ui/title.jsx";
-import Input from "../components/ui/Input";
+import Input from "../components/ui/input.jsx";
 import {Button} from "../components/ui/button.jsx";
 import { useCart } from "../hooks/useCart";
 import Price from "../components/Price/Price";

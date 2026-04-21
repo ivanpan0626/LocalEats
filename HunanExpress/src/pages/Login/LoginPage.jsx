@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import styles from "./loginPage.module.css";
 import Title from "../../components/ui/title";
-import Input from "../../components/ui/Input";
+import Input from "../../components/ui/input.jsx";
 import Button from "../../components/Button/Button";
 
 export default function LoginPage() {
